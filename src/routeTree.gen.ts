@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ZasilRouteImport } from './routes/zasil'
+import { Route as Swiat3dRouteImport } from './routes/swiat-3d'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as BazaWiedzyRouteImport } from './routes/baza-wiedzy'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +20,11 @@ import { Route as EksperymentySlugRouteImport } from './routes/eksperymenty.$slu
 const ZasilRoute = ZasilRouteImport.update({
   id: '/zasil',
   path: '/zasil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Swiat3dRoute = Swiat3dRouteImport.update({
+  id: '/swiat-3d',
+  path: '/swiat-3d',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontaktRoute = KontaktRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/baza-wiedzy': typeof BazaWiedzyRoute
   '/kontakt': typeof KontaktRoute
+  '/swiat-3d': typeof Swiat3dRoute
   '/zasil': typeof ZasilRoute
   '/eksperymenty/$slug': typeof EksperymentySlugRoute
   '/eksperymenty/': typeof EksperymentyIndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/baza-wiedzy': typeof BazaWiedzyRoute
   '/kontakt': typeof KontaktRoute
+  '/swiat-3d': typeof Swiat3dRoute
   '/zasil': typeof ZasilRoute
   '/eksperymenty/$slug': typeof EksperymentySlugRoute
   '/eksperymenty': typeof EksperymentyIndexRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/baza-wiedzy': typeof BazaWiedzyRoute
   '/kontakt': typeof KontaktRoute
+  '/swiat-3d': typeof Swiat3dRoute
   '/zasil': typeof ZasilRoute
   '/eksperymenty/$slug': typeof EksperymentySlugRoute
   '/eksperymenty/': typeof EksperymentyIndexRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/baza-wiedzy'
     | '/kontakt'
+    | '/swiat-3d'
     | '/zasil'
     | '/eksperymenty/$slug'
     | '/eksperymenty/'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/baza-wiedzy'
     | '/kontakt'
+    | '/swiat-3d'
     | '/zasil'
     | '/eksperymenty/$slug'
     | '/eksperymenty'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/baza-wiedzy'
     | '/kontakt'
+    | '/swiat-3d'
     | '/zasil'
     | '/eksperymenty/$slug'
     | '/eksperymenty/'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BazaWiedzyRoute: typeof BazaWiedzyRoute
   KontaktRoute: typeof KontaktRoute
+  Swiat3dRoute: typeof Swiat3dRoute
   ZasilRoute: typeof ZasilRoute
   EksperymentySlugRoute: typeof EksperymentySlugRoute
   EksperymentyIndexRoute: typeof EksperymentyIndexRoute
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/zasil'
       fullPath: '/zasil'
       preLoaderRoute: typeof ZasilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/swiat-3d': {
+      id: '/swiat-3d'
+      path: '/swiat-3d'
+      fullPath: '/swiat-3d'
+      preLoaderRoute: typeof Swiat3dRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontakt': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BazaWiedzyRoute: BazaWiedzyRoute,
   KontaktRoute: KontaktRoute,
+  Swiat3dRoute: Swiat3dRoute,
   ZasilRoute: ZasilRoute,
   EksperymentySlugRoute: EksperymentySlugRoute,
   EksperymentyIndexRoute: EksperymentyIndexRoute,
