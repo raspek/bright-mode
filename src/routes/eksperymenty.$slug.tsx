@@ -1,11 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
-import { experiments } from "@/data/experiments";
+import { experiments, type Experiment } from "@/data/experiments";
 import { ChevronRight, Lightbulb, PlayCircle } from "lucide-react";
 import { ExperimentCard } from "@/components/ExperimentCard";
 
 export const Route = createFileRoute("/eksperymenty/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { exp: Experiment } => {
     const exp = experiments.find((e) => e.slug === params.slug);
     if (!exp) throw notFound();
     return { exp };
