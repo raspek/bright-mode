@@ -38,7 +38,7 @@ export const Route = createFileRoute("/eksperymenty/$slug")({
 });
 
 function ExperimentDetail() {
-  const { exp } = Route.useLoaderData();
+  const { exp } = Route.useLoaderData() as { exp: Experiment };
   const others = experiments.filter((e) => e.slug !== exp.slug).slice(0, 3);
 
   return (
