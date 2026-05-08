@@ -11,11 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ZasilRouteImport } from './routes/zasil'
 import { Route as KontaktRouteImport } from './routes/kontakt'
-import { Route as EksperymentyRouteImport } from './routes/eksperymenty'
 import { Route as BazaWiedzyRouteImport } from './routes/baza-wiedzy'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EksperymentyIndexRouteImport } from './routes/eksperymenty.index'
 import { Route as EksperymentySlugRouteImport } from './routes/eksperymenty.$slug'
-import { Route as EksperymentyRouteImport } from './routes/eksperymenty.'
 
 const ZasilRoute = ZasilRouteImport.update({
   id: '/zasil',
@@ -25,11 +24,6 @@ const ZasilRoute = ZasilRouteImport.update({
 const KontaktRoute = KontaktRouteImport.update({
   id: '/kontakt',
   path: '/kontakt',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EksperymentyRoute = EksperymentyRouteImport.update({
-  id: '/eksperymenty',
-  path: '/eksperymenty',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BazaWiedzyRoute = BazaWiedzyRouteImport.update({
@@ -42,79 +36,75 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EksperymentyIndexRoute = EksperymentyIndexRouteImport.update({
+  id: '/eksperymenty/',
+  path: '/eksperymenty/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EksperymentySlugRoute = EksperymentySlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
-  getParentRoute: () => EksperymentyRoute,
-} as any)
-const EksperymentyRoute = EksperymentyRouteImport.update({
-  id: '/',
-  path: '/',
   getParentRoute: () => EksperymentyRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/baza-wiedzy': typeof BazaWiedzyRoute
-  '/eksperymenty': typeof EksperymentyRouteWithChildren
   '/kontakt': typeof KontaktRoute
   '/zasil': typeof ZasilRoute
-  '/eksperymenty/': typeof EksperymentyRoute
   '/eksperymenty/$slug': typeof EksperymentySlugRoute
+  '/eksperymenty/': typeof EksperymentyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/baza-wiedzy': typeof BazaWiedzyRoute
   '/kontakt': typeof KontaktRoute
   '/zasil': typeof ZasilRoute
-  '/eksperymenty': typeof EksperymentyRoute
   '/eksperymenty/$slug': typeof EksperymentySlugRoute
+  '/eksperymenty': typeof EksperymentyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/baza-wiedzy': typeof BazaWiedzyRoute
-  '/eksperymenty': typeof EksperymentyRouteWithChildren
   '/kontakt': typeof KontaktRoute
   '/zasil': typeof ZasilRoute
-  '/eksperymenty/': typeof EksperymentyRoute
   '/eksperymenty/$slug': typeof EksperymentySlugRoute
+  '/eksperymenty/': typeof EksperymentyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/baza-wiedzy'
-    | '/eksperymenty'
     | '/kontakt'
     | '/zasil'
-    | '/eksperymenty/'
     | '/eksperymenty/$slug'
+    | '/eksperymenty/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/baza-wiedzy'
     | '/kontakt'
     | '/zasil'
-    | '/eksperymenty'
     | '/eksperymenty/$slug'
+    | '/eksperymenty'
   id:
     | '__root__'
     | '/'
     | '/baza-wiedzy'
-    | '/eksperymenty'
     | '/kontakt'
     | '/zasil'
-    | '/eksperymenty/'
     | '/eksperymenty/$slug'
+    | '/eksperymenty/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BazaWiedzyRoute: typeof BazaWiedzyRoute
-  EksperymentyRoute: typeof EksperymentyRouteWithChildren
   KontaktRoute: typeof KontaktRoute
   ZasilRoute: typeof ZasilRoute
+  EksperymentyIndexRoute: typeof EksperymentyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -133,13 +123,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontaktRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/eksperymenty': {
-      id: '/eksperymenty'
-      path: '/eksperymenty'
-      fullPath: '/eksperymenty'
-      preLoaderRoute: typeof EksperymentyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/baza-wiedzy': {
       id: '/baza-wiedzy'
       path: '/baza-wiedzy'
@@ -154,6 +137,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eksperymenty/': {
+      id: '/eksperymenty/'
+      path: '/eksperymenty'
+      fullPath: '/eksperymenty/'
+      preLoaderRoute: typeof EksperymentyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/eksperymenty/$slug': {
       id: '/eksperymenty/$slug'
       path: '/$slug'
@@ -161,36 +151,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EksperymentySlugRouteImport
       parentRoute: typeof EksperymentyRoute
     }
-    '/eksperymenty/': {
-      id: '/eksperymenty/'
-      path: '/'
-      fullPath: '/eksperymenty/'
-      preLoaderRoute: typeof EksperymentyRouteImport
-      parentRoute: typeof EksperymentyRoute
-    }
   }
 }
-
-interface EksperymentyRouteChildren {
-  EksperymentyRoute: typeof EksperymentyRoute
-  EksperymentySlugRoute: typeof EksperymentySlugRoute
-}
-
-const EksperymentyRouteChildren: EksperymentyRouteChildren = {
-  EksperymentyRoute: EksperymentyRoute,
-  EksperymentySlugRoute: EksperymentySlugRoute,
-}
-
-const EksperymentyRouteWithChildren = EksperymentyRoute._addFileChildren(
-  EksperymentyRouteChildren,
-)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BazaWiedzyRoute: BazaWiedzyRoute,
-  EksperymentyRoute: EksperymentyRouteWithChildren,
   KontaktRoute: KontaktRoute,
   ZasilRoute: ZasilRoute,
+  EksperymentyIndexRoute: EksperymentyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
