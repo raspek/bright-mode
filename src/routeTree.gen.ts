@@ -42,9 +42,9 @@ const EksperymentyIndexRoute = EksperymentyIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const EksperymentySlugRoute = EksperymentySlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => EksperymentyRoute,
+  id: '/eksperymenty/$slug',
+  path: '/eksperymenty/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -104,6 +104,7 @@ export interface RootRouteChildren {
   BazaWiedzyRoute: typeof BazaWiedzyRoute
   KontaktRoute: typeof KontaktRoute
   ZasilRoute: typeof ZasilRoute
+  EksperymentySlugRoute: typeof EksperymentySlugRoute
   EksperymentyIndexRoute: typeof EksperymentyIndexRoute
 }
 
@@ -146,10 +147,10 @@ declare module '@tanstack/react-router' {
     }
     '/eksperymenty/$slug': {
       id: '/eksperymenty/$slug'
-      path: '/$slug'
+      path: '/eksperymenty/$slug'
       fullPath: '/eksperymenty/$slug'
       preLoaderRoute: typeof EksperymentySlugRouteImport
-      parentRoute: typeof EksperymentyRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -159,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   BazaWiedzyRoute: BazaWiedzyRoute,
   KontaktRoute: KontaktRoute,
   ZasilRoute: ZasilRoute,
+  EksperymentySlugRoute: EksperymentySlugRoute,
   EksperymentyIndexRoute: EksperymentyIndexRoute,
 }
 export const routeTree = rootRouteImport
