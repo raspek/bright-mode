@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { Experiment } from "@/data/experiments";
+import { Tilt3D } from "./Tilt3D";
 
 const accentBg: Record<Experiment["accent"], string> = {
   sun: "bg-sun",
@@ -12,6 +13,7 @@ const accentBg: Record<Experiment["accent"], string> = {
 
 export function ExperimentCard({ exp, large = false }: { exp: Experiment; large?: boolean }) {
   return (
+    <Tilt3D>
     <article className={`card-pop overflow-hidden flex flex-col ${large ? "" : ""}`}>
       <Link to="/eksperymenty/$slug" params={{ slug: exp.slug }} className={`relative block ${accentBg[exp.accent]}`}>
         <img
@@ -37,5 +39,6 @@ export function ExperimentCard({ exp, large = false }: { exp: Experiment; large?
         </Link>
       </div>
     </article>
+    </Tilt3D>
   );
 }
