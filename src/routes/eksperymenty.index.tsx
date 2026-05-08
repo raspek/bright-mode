@@ -3,7 +3,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { ExperimentCard } from "@/components/ExperimentCard";
 import { experiments } from "@/data/experiments";
 
-export const Route = createFileRoute("/eksperymenty")({
+export const Route = createFileRoute("/eksperymenty/")({
   head: () => ({
     meta: [
       { title: "Eksperymenty — Fabryka Eksperymentów Noego" },
