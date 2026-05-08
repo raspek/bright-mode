@@ -9,38 +9,134 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ZasilRouteImport } from './routes/zasil'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as EksperymentyRouteImport } from './routes/eksperymenty'
+import { Route as BazaWiedzyRouteImport } from './routes/baza-wiedzy'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EksperymentySlugRouteImport } from './routes/eksperymenty.$slug'
 
+const ZasilRoute = ZasilRouteImport.update({
+  id: '/zasil',
+  path: '/zasil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EksperymentyRoute = EksperymentyRouteImport.update({
+  id: '/eksperymenty',
+  path: '/eksperymenty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BazaWiedzyRoute = BazaWiedzyRouteImport.update({
+  id: '/baza-wiedzy',
+  path: '/baza-wiedzy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EksperymentySlugRoute = EksperymentySlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => EksperymentyRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/baza-wiedzy': typeof BazaWiedzyRoute
+  '/eksperymenty': typeof EksperymentyRouteWithChildren
+  '/kontakt': typeof KontaktRoute
+  '/zasil': typeof ZasilRoute
+  '/eksperymenty/$slug': typeof EksperymentySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/baza-wiedzy': typeof BazaWiedzyRoute
+  '/eksperymenty': typeof EksperymentyRouteWithChildren
+  '/kontakt': typeof KontaktRoute
+  '/zasil': typeof ZasilRoute
+  '/eksperymenty/$slug': typeof EksperymentySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/baza-wiedzy': typeof BazaWiedzyRoute
+  '/eksperymenty': typeof EksperymentyRouteWithChildren
+  '/kontakt': typeof KontaktRoute
+  '/zasil': typeof ZasilRoute
+  '/eksperymenty/$slug': typeof EksperymentySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/baza-wiedzy'
+    | '/eksperymenty'
+    | '/kontakt'
+    | '/zasil'
+    | '/eksperymenty/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/baza-wiedzy'
+    | '/eksperymenty'
+    | '/kontakt'
+    | '/zasil'
+    | '/eksperymenty/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/baza-wiedzy'
+    | '/eksperymenty'
+    | '/kontakt'
+    | '/zasil'
+    | '/eksperymenty/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BazaWiedzyRoute: typeof BazaWiedzyRoute
+  EksperymentyRoute: typeof EksperymentyRouteWithChildren
+  KontaktRoute: typeof KontaktRoute
+  ZasilRoute: typeof ZasilRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/zasil': {
+      id: '/zasil'
+      path: '/zasil'
+      fullPath: '/zasil'
+      preLoaderRoute: typeof ZasilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/eksperymenty': {
+      id: '/eksperymenty'
+      path: '/eksperymenty'
+      fullPath: '/eksperymenty'
+      preLoaderRoute: typeof EksperymentyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/baza-wiedzy': {
+      id: '/baza-wiedzy'
+      path: '/baza-wiedzy'
+      fullPath: '/baza-wiedzy'
+      preLoaderRoute: typeof BazaWiedzyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +144,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/eksperymenty/$slug': {
+      id: '/eksperymenty/$slug'
+      path: '/$slug'
+      fullPath: '/eksperymenty/$slug'
+      preLoaderRoute: typeof EksperymentySlugRouteImport
+      parentRoute: typeof EksperymentyRoute
+    }
   }
 }
 
+interface EksperymentyRouteChildren {
+  EksperymentySlugRoute: typeof EksperymentySlugRoute
+}
+
+const EksperymentyRouteChildren: EksperymentyRouteChildren = {
+  EksperymentySlugRoute: EksperymentySlugRoute,
+}
+
+const EksperymentyRouteWithChildren = EksperymentyRoute._addFileChildren(
+  EksperymentyRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BazaWiedzyRoute: BazaWiedzyRoute,
+  EksperymentyRoute: EksperymentyRouteWithChildren,
+  KontaktRoute: KontaktRoute,
+  ZasilRoute: ZasilRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
