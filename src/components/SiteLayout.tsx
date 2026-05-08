@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Beaker, Rocket, Mail, Menu, Moon, Sun, BookOpen, Sparkles, Facebook, Instagram, Youtube } from "lucide-react";
+import { Beaker, Rocket, Mail, Menu, Moon, Sun, BookOpen, Sparkles, Facebook, Instagram, Youtube, Boxes } from "lucide-react";
 import { type ReactNode, useState } from "react";
 import logo from "@/assets/logo.png";
 import { useTheme } from "./ThemeProvider";
 
 const navItems = [
   { to: "/eksperymenty", label: "Eksperymenty", icon: Beaker },
+  { to: "/swiat-3d", label: "Świat 3D", icon: Boxes },
   { to: "/baza-wiedzy", label: "Baza Wiedzy", icon: BookOpen },
   { to: "/zasil", label: "Zasil Laboratorium", icon: Rocket },
   { to: "/kontakt", label: "Kontakt", icon: Mail },
