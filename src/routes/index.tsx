@@ -22,24 +22,36 @@ function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-4 pt-8 pb-12">
-          <div className="rounded-3xl p-6 md:p-10" style={{ backgroundImage: "var(--gradient-hero)" }}>
-            <div className="grid md:grid-cols-2 gap-6 items-center">
-              <div>
-                <p className="inline-flex items-center gap-1 rounded-full bg-background/70 px-3 py-1 text-xs font-bold border-2 border-border"><Sparkles className="h-3 w-3 text-accent" /> Nauka przez zabawę</p>
-                <h1 className="mt-4 font-display text-4xl md:text-5xl font-bold leading-tight">
-                  Witaj w <span className="text-primary">Fabryce</span> małego naukowca!
-                </h1>
-                <p className="mt-3 text-base md:text-lg text-muted-foreground">
-                  Odkryj kolorowe eksperymenty, zdobywaj odznaki i baw się chemią, fizyką oraz przyrodą razem z Noego i jego robotem.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <Link to="/eksperymenty" className="btn-rainbow">Zobacz eksperymenty</Link>
-                  <Link to="/baza-wiedzy" className="inline-flex items-center gap-2 rounded-full bg-background border-2 border-border px-5 py-3 font-bold hover:bg-secondary">Baza Wiedzy</Link>
-                </div>
-              </div>
-              <div className="relative">
-                <img src={heroLight} alt="Mały naukowiec z robotem w laboratorium" className="w-full h-auto drop-shadow-xl block dark:hidden" width={1536} height={1024} />
-                <img src={heroDark} alt="Mały naukowiec z robotem w neonowym laboratorium" className="w-full h-auto drop-shadow-xl hidden dark:block" width={1536} height={1024} />
+          <div className="rounded-3xl overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
+            <div className="relative w-full">
+              <img
+                src={heroLight}
+                alt="Mały naukowiec z robotem w laboratorium"
+                className="w-full h-auto block dark:hidden"
+                width={1536}
+                height={1024}
+              />
+              <img
+                src={heroDark}
+                alt="Mały naukowiec z robotem w neonowym laboratorium"
+                className="w-full h-auto hidden dark:block"
+                width={1536}
+                height={1024}
+              />
+            </div>
+            <div className="px-6 md:px-10 pb-8 md:pb-10 -mt-6 md:-mt-10 relative z-10 text-center max-w-3xl mx-auto">
+              <p className="inline-flex items-center gap-1 rounded-full bg-background/80 backdrop-blur px-3 py-1 text-xs font-bold border-2 border-border">
+                <Sparkles className="h-3 w-3 text-accent" /> Nauka przez zabawę
+              </p>
+              <h1 className="mt-4 font-display text-4xl md:text-6xl font-bold leading-tight">
+                Witaj w <span className="text-primary">Fabryce</span> małego naukowca!
+              </h1>
+              <p className="mt-3 text-base md:text-lg text-muted-foreground">
+                Odkryj kolorowe eksperymenty, zdobywaj odznaki i baw się chemią, fizyką oraz przyrodą razem z Noego i jego robotem.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3 justify-center">
+                <Link to="/eksperymenty" className="btn-rainbow">Zobacz eksperymenty</Link>
+                <Link to="/baza-wiedzy" className="inline-flex items-center gap-2 rounded-full bg-background border-2 border-border px-5 py-3 font-bold hover:bg-secondary">Baza Wiedzy</Link>
               </div>
             </div>
           </div>
