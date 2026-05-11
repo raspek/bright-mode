@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Experiment } from "@/data/experiments";
@@ -13,12 +13,25 @@ const accentBg: Record<Experiment["accent"], string> = {
 
 export function ExperimentsCarousel3D({ items }: { items: Experiment[] }) {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const n = items.length;
 
   const go = (dir: number) => setActive((a) => (a + dir + n) % n);
 
+  useEffect(() => {
+    if (paused || n <= 1) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % n), 4000);
+    return () => clearInterval(id);
+  }, [paused, n]);
+
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
       <div
         className="relative mx-auto h-[460px] md:h-[560px] w-full"
         style={{ perspective: "1400px" }}
