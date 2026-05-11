@@ -2,7 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { ExperimentsCarousel3D } from "@/components/ExperimentsCarousel3D";
 import { experiments } from "@/data/experiments";
-import heroLab from "@/assets/hero-lab.png";
+import heroLight from "@/assets/head-light.png";
+import heroDark from "@/assets/head-dark.png";
 import { Lock, Beaker, Cog, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -37,7 +38,8 @@ function Home() {
                 </div>
               </div>
               <div className="relative">
-                <img src={heroLab} alt="Mały naukowiec z robotem w laboratorium" className="w-full h-auto drop-shadow-xl" width={1536} height={1024} />
+                <img src={heroLight} alt="Mały naukowiec z robotem w laboratorium" className="w-full h-auto drop-shadow-xl block dark:hidden" width={1536} height={1024} />
+                <img src={heroDark} alt="Mały naukowiec z robotem w neonowym laboratorium" className="w-full h-auto drop-shadow-xl hidden dark:block" width={1536} height={1024} />
               </div>
             </div>
           </div>
