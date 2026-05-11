@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
-import { ExperimentCard } from "@/components/ExperimentCard";
+import { ExperimentsCarousel3D } from "@/components/ExperimentsCarousel3D";
 import { experiments } from "@/data/experiments";
 import heroLab from "@/assets/hero-lab.png";
 import { Lock, Beaker, Cog, Sparkles } from "lucide-react";
@@ -50,11 +50,7 @@ function Home() {
           <h2 className="font-display text-2xl md:text-3xl font-bold flex items-center gap-2"><Beaker className="h-7 w-7 text-primary" /> Najnowsze eksperymenty</h2>
           <Link to="/eksperymenty" className="text-sm font-bold text-primary hover:underline">Zobacz wszystkie →</Link>
         </div>
-        <div className="grid md:grid-cols-2 gap-5">
-          {experiments.map((e) => (
-            <ExperimentCard key={e.slug} exp={e} large />
-          ))}
-        </div>
+        <ExperimentsCarousel3D items={experiments} />
       </section>
 
       {/* Badges */}
