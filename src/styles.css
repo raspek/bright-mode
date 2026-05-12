@@ -196,21 +196,20 @@
   opacity: 0;
   transition: opacity .35s ease;
   background:
-    radial-gradient(480px circle at var(--mx, 50%) var(--my, 50%),
-      oklch(0.7 0.32 320 / 0.55),
-      oklch(0.75 0.28 200 / 0.35) 30%,
-      oklch(0.8 0.28 80 / 0.18) 55%,
+    radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%),
+      oklch(0.85 0.14 300 / 0.18),
+      oklch(0.88 0.12 220 / 0.10) 45%,
       transparent 70%);
-  mix-blend-mode: multiply;
-  animation: spotlight-hue 6s linear infinite;
+  mix-blend-mode: soft-light;
+  animation: spotlight-hue 14s linear infinite;
 }
-.mouse-spotlight.is-active { opacity: 1; }
+.mouse-spotlight.is-active { opacity: .85; }
 .dark .mouse-spotlight {
   background:
-    radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%),
-      oklch(0.85 0.28 305 / 0.55),
-      oklch(0.85 0.22 200 / 0.35) 35%,
-      transparent 65%);
+    radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%),
+      oklch(0.85 0.18 305 / 0.22),
+      oklch(0.85 0.16 200 / 0.12) 40%,
+      transparent 70%);
   mix-blend-mode: screen;
 }
 
